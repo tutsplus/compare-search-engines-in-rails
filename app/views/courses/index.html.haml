@@ -1,0 +1,19 @@
+%h1 Listing courses
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Title
+      %th Category
+      %th Duration
+      %th Published at
+
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.title
+        %td= course.category
+        %td= course.duration
+        %td= course.published_at
+%p
+  = link_to 'New Course', new_course_path
