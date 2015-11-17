@@ -18,6 +18,7 @@ gem 'pry-byebug'
 gem 'puma'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'quiet_assets'
 
 group :development, :test do
   gem 'byebug'

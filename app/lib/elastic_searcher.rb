@@ -31,10 +31,27 @@ class ElasticSearcher
     Course.search({
       query: {
         bool: {
-          must: matches
+          must: [ matches, duration_range ].flatten
         }
       }
     }).records
+  end
+
+  def duration_range
+    duration_start = params[:search][:duration_start]
+    duration_end   = params[:search][:duration_end]
+
+    duration_start = nil if duration_start.empty?
+    duration_end   = nil if duration_end.empty?
+
+    {
+      range: {
+        duration: {
+          gte: duration_start,
+          lte: duration_end
+        }
+      }
+    }
   end
 end
 

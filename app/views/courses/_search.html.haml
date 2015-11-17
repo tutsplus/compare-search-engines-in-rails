@@ -11,4 +11,11 @@
     %p
       =text_field_tag "search[category]", "", class: "form-control", placeholder: "Category"
 
+    %p.input-group.col-md-4
+      =text_field_tag "search[duration_start]", "", class: "form-control", placeholder: "Duration start"
+      %span.input-group-addon
+        &rarr;
+      =text_field_tag "search[duration_end]", "", class: "form-control", placeholder: "Duration end"
+
+
     =button_tag "Search"
