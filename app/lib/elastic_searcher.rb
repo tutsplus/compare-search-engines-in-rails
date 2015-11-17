@@ -31,7 +31,7 @@ class ElasticSearcher
     Course.search({
       query: {
         bool: {
-          must: [ matches, duration_range ].flatten
+          must: [ matches, duration_range, published_at_range ].flatten
         }
       }
     }).records
@@ -49,6 +49,24 @@ class ElasticSearcher
         duration: {
           gte: duration_start,
           lte: duration_end
+        }
+      }
+    }
+  end
+
+  def published_at_range
+    published_at_start = params[:search][:published_at_start]
+    published_at_end   = params[:search][:published_at_end]
+
+    published_at_start = nil if published_at_start.empty?
+    published_at_end   = nil if published_at_end.empty?
+
+    {
+      range: {
+        published_at: {
+          gte: published_at_start,
+          lte: published_at_end,
+          format: "yyyy/MM/dd"
         }
       }
     }

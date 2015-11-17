@@ -19,6 +19,7 @@ gem 'puma'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'quiet_assets'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'byebug'
