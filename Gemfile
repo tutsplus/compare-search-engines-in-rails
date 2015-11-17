@@ -26,3 +26,8 @@ group :development do
   gem 'spring'
 end
 
+group :script do
+  gem "sqlite3"
+  gem "sequel"
+  gem "nokogiri"
+end
