@@ -28,10 +28,16 @@ class ElasticSearcher
     matches << { wildcard: { title: title } } unless title.empty?
     matches << { wildcard: { category: category } } unless category.empty?
 
+    published_at_filter = if params[:search][:published_at_last].empty?
+      published_at_range
+    else
+      published_at_last
+    end
+
     Course.search({
       query: {
         bool: {
-          must: [ matches, duration_range, published_at_range ].flatten
+          must: [ matches, duration_range, published_at_filter ].flatten
         }
       }
     }).records
@@ -71,6 +77,21 @@ class ElasticSearcher
       }
     }
   end
+
+  def published_at_last
+    table = {
+      "week" => 7,
+      "month" => 30,
+      "year" => 365
+    }
+    number = table[params[:search][:published_at_last]]
+
+    {
+      range: {
+        published_at: {
+          gte: "now-#{number}d/d"
+        }
+      }
+    }
+  end
 end
-
-
