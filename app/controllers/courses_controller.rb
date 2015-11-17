@@ -1,11 +1,9 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
-  # GET /courses.json
   def index
-    @courses = if params[:q].present?
-      Course.search(params[:q]).records
+    @courses = if params[:q].present? || params[:search] && (params[:search][:title].present? || params[:search][:category].present?)
+      ElasticSearcher.new.call(params).courses
     else
       Course.all
     end
