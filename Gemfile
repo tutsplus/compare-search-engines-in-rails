@@ -16,6 +16,8 @@ gem 'bootstrap-sass'
 gem 'pry-rails'
 gem 'pry-byebug'
 gem 'puma'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development, :test do
   gem 'byebug'
