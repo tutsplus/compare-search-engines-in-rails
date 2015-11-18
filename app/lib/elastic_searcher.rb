@@ -17,7 +17,7 @@ class ElasticSearcher
   attr_reader :params
 
   def simple_search
-    Course.search(params[:q]).records
+    Course.search(params[:q]).page(params[:page] || 1).per(15).records
   end
 
   def complex_search
@@ -40,7 +40,7 @@ class ElasticSearcher
           must: [ matches, duration_range, published_at_filter ].flatten
         }
       }
-    }).records
+    }).page(params[:page] || 1).per(15).records
   end
 
   def duration_range

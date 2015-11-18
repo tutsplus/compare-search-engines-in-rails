@@ -17,5 +17,8 @@
         %td= course.category
         %td= course.duration
         %td= course.published_at
+
+=paginate @courses, theme: "twitter-bootstrap-3"
+
 %p
   = link_to 'New Course', new_course_path
