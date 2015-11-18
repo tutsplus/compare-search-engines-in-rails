@@ -11,7 +11,10 @@ class SunspotSearcher
   end
 
   def simple_search
-    Course.search { fulltext params[:q] }.results
+    Course.search do
+      fulltext params[:q]
+      paginate page: params[:page] || 1, per_page: 15
+    end.results
   end
 
   def complex_search
@@ -46,6 +49,7 @@ class SunspotSearcher
         end
       end
 
+      paginate page: params[:page] || 1, per_page: 15
     end.results
   end
 end
