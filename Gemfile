@@ -18,13 +18,16 @@ gem 'pry-byebug'
 gem 'puma'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+#gem 'elasticsearch-model'
+#gem 'elasticsearch-rails'
+gem 'sunspot_rails'
 gem 'quiet_assets'
 gem 'bootstrap-datepicker-rails'
+gem 'progress_bar'
 
 group :development, :test do
   gem 'byebug'
+  gem 'sunspot_solr'
 end
 
 group :development do
